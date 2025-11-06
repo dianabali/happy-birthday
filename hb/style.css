@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+:root{
+    --bg-a: #fff0f6;
+    --bg-b: #f0f6ff;
+    --spark1: #ff9ecb;
+    --spark2: #bcdcff;
+    --spark3: #ffe9a8;
+    --spark4: #c6f0d6;
+    --shadow: #d63480;
+}
+
+* {
+    font-family: "Delius", cursive, sans-serif;
+}
+
+html,body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg,var(--bg-a), var(--bg-b));
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.h1{
+    position: relative;
+    z-index: 4;
+    font-size: 70px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 10px 20px var(--shadow);
+    margin: 0;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+canvas#confetti{
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    display: block;
+}
+
+canvas#fireworks{
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.cake {
+    position: relative;
+    width: 200px;
+    margin: 50px auto;
+}
+
+.layer {
+    width: 200px;
+    height: 50px;
+    background: #FF90BB; 
+    border-radius: 10px;
+    margin-bottom: 5px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.layer-middle {
+    width: 160px;
+    height: 50px;
+    background: #FF90BB;
+    margin: 0 auto 5px auto;
+}
+
+.layer-top {
+    width: 120px;
+    height: 50px;
+    background: #FF90BB;
+    margin: 0 auto 5px auto;
+}
+
+.candles {
+    position: absolute;
+    top: -45px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.candle {
+    width: 10px;
+    height: 40px;
+    background: #d63480;
+    border-radius: 2px;
+    position: relative;
+}
+
+.layer::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    border-radius: 10px 10px 0 0;
+    background: #fffff3;
+    z-index: 1;
+    clip-path: polygon(
+    0% 0%, 10% 0%, 20% 0%, 30% 0%, 40% 0%,
+    50% 0%, 60% 0%, 70% 0%, 80% 0%, 90% 0%, 100% 0%,
+    100% 100%, 90% 85%, 80% 95%, 70% 85%, 60% 95%,
+    50% 85%, 40% 95%, 30% 85%, 20% 95%, 10% 85%, 0% 100%
+    );
+}
+
+.candle::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 10px;
+    background: orange;
+    border-radius: 50%;
+    box-shadow: 0 0 8px yellow;
+}
+
+.btn {
+      background-color: #ed9ad3;
+      border: none;
+      color: white;
+      padding: 15px 25px;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background-color: #ec7fca;
+    transform: scale(1.05);
+}
+
+/* --- Modal Styles --- */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff0f8;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 300px;
+    animation: popIn 0.4s ease;
+}
+
+.modal-content p {
+    color: #ff4fa3;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    background-color: #ff4fa3;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.close-btn:hover {
+    background-color: #ff7ecb;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Floating message */
+.floating-message {
+    position: absolute;
+    background: rgba(255, 79, 163, 0.9);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-size: 1rem;
+    animation: floatUp 2.8s ease forwards;
+    pointer-events: none;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+
+@keyframes floatUp {
+    0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+    10% { opacity: 1; transform: translateY(0) scale(1); }
+    90% { opacity: 1; transform: translateY(-60px) scale(1.1); }
+    100% { opacity: 0; transform: translateY(-80px) scale(1.2); }
+}
+
+/* Transparent click layer */
+.click-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: transparent;
+    cursor: pointer;
+}
