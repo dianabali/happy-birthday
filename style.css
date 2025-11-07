@@ -208,7 +208,8 @@ canvas#fireworks{
     animation: floatUp 2.8s ease forwards;
     pointer-events: none;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-    /* white-space: nowrap; */
+    white-space: nowrap;
+    z-index: 9999;
 }
 
 @keyframes floatUp {
